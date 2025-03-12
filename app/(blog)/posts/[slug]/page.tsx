@@ -1,5 +1,3 @@
-// app/(blog)/posts/[slug]/page.tsx
-
 import { QueryParams } from 'next-sanity';
 import { notFound } from 'next/navigation';
 
@@ -9,7 +7,6 @@ import { client } from '@/sanity/lib/client';
 import { sanityFetch } from '@/sanity/lib/live';
 import { Post } from '@/components/post';
 import Header from '../../../../components/header';
-import type { QueryParams as CustomQueryParams } from '@/types';
 
 export async function generateStaticParams() {
 	const posts = await client.fetch(POSTS_QUERY);
@@ -22,7 +19,7 @@ export async function generateStaticParams() {
 export default async function Page({
 	params,
 }: {
-	params: Promise<CustomQueryParams>;
+	params: Promise<QueryParams>;
 }) {
 	const { data: post } = await sanityFetch({
 		query: POST_QUERY,
