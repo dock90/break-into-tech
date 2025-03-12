@@ -8,6 +8,8 @@ import { POSTS_QUERY, POST_QUERY } from '@/sanity/lib/queries';
 import { client } from '@/sanity/lib/client';
 import { sanityFetch } from '@/sanity/lib/live';
 import { Post } from '@/components/post';
+import Header from '../../../../components/header';
+import type { QueryParams as CustomQueryParams } from '@/types';
 
 export async function generateStaticParams() {
 	const posts = await client.fetch(POSTS_QUERY);
@@ -20,14 +22,23 @@ export async function generateStaticParams() {
 export default async function Page({
 	params,
 }: {
-	params: Promise<QueryParams>;
+	params: Promise<CustomQueryParams>;
 }) {
 	const { data: post } = await sanityFetch({
 		query: POST_QUERY,
 		params: await params,
 	});
+
 	if (!post) {
 		return notFound();
 	}
-	return <Post post={post} />;
+
+	return (
+		<div>
+			<Header />
+			<main className='max-w-7xl mx-auto px-6 py-8'>
+				<Post post={post} />
+			</main>
+		</div>
+	);
 }
