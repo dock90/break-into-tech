@@ -7,11 +7,12 @@ import { client } from '@/sanity/lib/client';
 import { sanityFetch } from '@/sanity/lib/live';
 import { Post } from '@/components/post';
 import Header from '../../../../components/header';
+import { Post as PostType } from '@/sanity.types';
 
 export async function generateStaticParams() {
 	const posts = await client.fetch(POSTS_QUERY);
 
-	return posts.map((post) => ({
+	return posts.map((post: PostType) => ({
 		slug: post?.slug?.current,
 	}));
 }
