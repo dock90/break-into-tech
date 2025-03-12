@@ -9,9 +9,10 @@ export default async function Page() {
 	});
 
 	return (
-		<div>
+		<div className='min-h-screen bg-white'>
 			<Header />
-			<main className='max-w-7xl mx-auto px-6 py-8'>
+			<main className='max-w-3xl mx-auto px-6 py-12'>
+				<h1 className='text-3xl font-bold mb-8 text-gray-900'>Blog</h1>
 				<Posts posts={posts} />
 			</main>
 		</div>
