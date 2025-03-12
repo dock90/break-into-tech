@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
 	title: 'Break Into Tech',
 	description:
-		'A blog about learning to code, time management, and contract work for aspiring developers.',
+		'Learn to code, better manage your time, and get paid to code with contract work.',
 };
 
 export default async function RootLayout({

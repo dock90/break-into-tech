@@ -5,7 +5,7 @@ const Header = () => {
 		<header className='w-full py-4 px-6 border-b'>
 			<div className='max-w-7xl mx-auto grid grid-cols-2 items-center'>
 				<Link href='/' className='text-xl font-bold'>
-					Breaking into Tech
+					Break into Tech
 				</Link>
 				<nav className='justify-self-end'>
 					<Link
