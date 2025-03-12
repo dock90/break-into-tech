@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { SanityLive } from '@/sanity/lib/live';
+import { DisableDraftMode } from '@/components/disable-draft-mode';
+import { VisualEditing } from 'next-sanity';
+import { draftMode } from 'next/headers';
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -19,7 +22,7 @@ export const metadata: Metadata = {
 		'A blog about learning to code, time management, and contract work for aspiring developers.',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
@@ -30,8 +33,14 @@ export default function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
 				{children}
+				<SanityLive />
+				{(await draftMode()).isEnabled && (
+					<>
+						<DisableDraftMode />
+						<VisualEditing />
+					</>
+				)}
 			</body>
-			<SanityLive />
 		</html>
 	);
 }
